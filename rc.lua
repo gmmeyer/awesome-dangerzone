@@ -7,8 +7,8 @@ require("beautiful")
 -- Notification library
 require("naughty")
 --picturesque
-require('./picturesque')
-require('./asyncshell')
+--require('picturesque')
+--require('asyncshell')
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -402,3 +402,4 @@ run_once("pidgin")
 run_once("blueman-applet")
 run_once("synapse")
 run_once('xfce4-volumed')
+srun_once('xfce4-power-manager')
