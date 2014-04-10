@@ -7,8 +7,8 @@ require("beautiful")
 -- Notification library
 require("naughty")
 --picturesque
---require('picturesque')
---require('asyncshell')
+require('picturesque')
+require('asyncshell')
 
 -- Load Debian menu entries
 require("debian.menu")
