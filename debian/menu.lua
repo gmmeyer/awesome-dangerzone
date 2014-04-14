@@ -47,7 +47,6 @@ Debian_menu["Debian_Applications_Graphics"] = {
 	{"X Window Snapshot","xwd | xwud"},
 }
 Debian_menu["Debian_Applications_Network_Communication"] = {
-	{"Evolution","/usr/bin/evolution","/usr/share/pixmaps/evolution.xpm"},
 	{"Pidgin","/usr/bin/pidgin","/usr/share/pixmaps/pidgin-menu.xpm"},
 	{"Telnet", "x-terminal-emulator -e ".."/usr/bin/telnet"},
 	{"Xbiff","xbiff"},
@@ -115,6 +114,7 @@ Debian_menu["Debian_Applications_System_Administration"] = {
 	{"Gnome Control Center","/usr/bin/gnome-control-center",},
 	{"GNOME partition editor","su-to-root -X -c /usr/sbin/gparted","/usr/share/pixmaps/gparted.xpm"},
 	{"pppconfig", "x-terminal-emulator -e ".."su-to-root -p root -c /usr/sbin/pppconfig"},
+	{"QtConfig","/usr/lib/*/qt4/bin/qtconfig"},
 	{"Shares Admin","/usr/bin/shares-admin","/usr/share/gnome-system-tools/pixmaps/shares.xpm"},
 	{"TeXconfig", "x-terminal-emulator -e ".."/usr/bin/texconfig"},
 	{"Time Admin","/usr/bin/time-admin","/usr/share/gnome-system-tools/pixmaps/time.xpm"},
