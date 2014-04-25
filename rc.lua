@@ -115,7 +115,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock("%a %b %d, %I:%M")
+--mytextclock = awful.widget.textclock("%a %b %d, %I:%M")
+mytextclock = awful.widget.textclock()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -460,10 +461,11 @@ end
 
 --the applets with the function
 run_once("nm-applet")
+run_once('skype')
 run_once("pidgin")
 run_once("blueman-applet")
 run_once("synapse -s")
 run_once("xfsettingsd")
 run_once('xfce4-volumed')
 run_once('xfce4-power-manager')
-run_once('dropbox start')
+run_once('sleep 5m; dropbox start')

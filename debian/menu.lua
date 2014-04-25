@@ -135,6 +135,7 @@ Debian_menu["Debian_Applications_System_Language_Environment"] = {
 }
 Debian_menu["Debian_Applications_System_Monitoring"] = {
 	{"GNOME system monitor","/usr/bin/gnome-system-monitor"},
+	{"htop", "x-terminal-emulator -e ".."/usr/bin/htop"},
 	{"Pstree", "x-terminal-emulator -e ".."/usr/bin/pstree.x11","/usr/share/pixmaps/pstree16.xpm"},
 	{"Top", "x-terminal-emulator -e ".."/usr/bin/top"},
 	{"Xconsole","xconsole -file /dev/xconsole"},
