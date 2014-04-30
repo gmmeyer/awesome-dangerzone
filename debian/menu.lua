@@ -101,6 +101,7 @@ Debian_menu["Debian_Applications_Shells"] = {
 	{"Bash", "x-terminal-emulator -e ".."/bin/bash --login"},
 	{"Dash", "x-terminal-emulator -e ".."/bin/dash -i"},
 	{"Sh", "x-terminal-emulator -e ".."/bin/sh --login"},
+	{"Zsh", "x-terminal-emulator -e ".."/bin/zsh5"},
 }
 Debian_menu["Debian_Applications_Sound"] = {
 	{"gmusicbrowser","/usr/bin/gmusicbrowser","/usr/share/gmusicbrowser/pix/gmusicbrowser.xpm"},
