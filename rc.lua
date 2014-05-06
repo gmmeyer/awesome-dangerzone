@@ -45,7 +45,7 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 -- Note to self: how do I fix the default terminal?
-terminal = "x-terminal-emulator"
+terminal = "xfce4-terminal"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -367,6 +367,8 @@ awful.rules.rules = {
       properties = { tag=tags[1][2], floating = true } },
     { rule = {class = "Skype"}, 
       properties = { tag=tags[1][2], floating = true } },
+    {rule = {class = "Guake"}, floating = true },
+    {rule = {class = "yakuake"}, floating = true},
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
