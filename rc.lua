@@ -11,6 +11,9 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+-- Quake Console
+-- local quake = require("quake")
+
 -- Load Debian menu entries
 require("debian.menu")
 
@@ -75,11 +78,54 @@ local layouts =
 -- }}}
 
 -- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
+-- if beautiful.wallpaper then
+--     for s = 1, screen.count() do
+--         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+--     end
+-- end
+
+-- configuration - edit to your liking
+-- wp_index = 1
+wp_timeout  = 100
+wp_path = "/home/greg/Pictures/Wallpapers/"
+-- wp_files = { "10.jpg","11.jpg","13.png","14.jpg","15.jpg","1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.png","7.png","8.jpg","9.png", "10.jpg", "11.jpg", "13.png", "14.jpg", "15.jpg", "16.png", '17.png', '18.jpg', '19.jpg'}
+
+-- Get the list of files from a directory. Must be all images or folders and non-empty. 
+function scanDir(directory)
+	local i, fileList, popen = 0, {}, io.popen
+	for filename in popen([[find "]] ..directory.. [[" -type f]]):lines() do
+	    i = i + 1
+	    fileList[i] = filename
+	end
+	return fileList
 end
+    
+wpList = scanDir("/home/greg/Pictures/Wallpapers")
+ 
+-- setup the timer
+wp_timer = timer { timeout = wp_timeout }
+wp_timer:connect_signal("timeout", function()
+ 
+  -- set wallpaper to current index
+  if beautiful.wallpaper then
+	    for s = 1, screen.count() do
+	        gears.wallpaper.maximized(wpList[math.random(1, #wpList)], s, true)
+	    end
+	end
+ 
+  -- stop the timer (we don't need multiple instances running at the same time)
+  wp_timer:stop()
+ 
+  -- get next random index
+  -- wp_index = math.random(1, #wpList)
+ 
+  --restart the timer
+  wp_timer.timeout = wp_timeout
+  wp_timer:start()
+end)
+ 
+-- initial start when rc.lua is first run
+wp_timer:start()
 -- }}}
 
 -- {{{ Tags
@@ -123,6 +169,7 @@ mywibox = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
+-- quakeconsole = {}
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
                     awful.button({ modkey }, 1, awful.client.movetotag),
@@ -205,6 +252,8 @@ for s = 1, screen.count() do
     layout:set_right(right_layout)
 
     mywibox[s]:set_widget(layout)
+    -- quakeconsole[s] = quake({ terminal = terminal,
+             -- height = 0.3, screen = s })
 end
 -- }}}
 
@@ -275,7 +324,11 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end)--,
+    
+    -- Quake Console
+    -- awful.key({ modkey }, "`",
+      -- function () quakeconsole[mouse.screen]:toggle() end)
 )
 
 clientkeys = awful.util.table.join(
@@ -367,8 +420,9 @@ awful.rules.rules = {
       properties = { tag=tags[1][2], floating = true } },
     { rule = {class = "Skype"}, 
       properties = { tag=tags[1][2], floating = true } },
-    {rule = {class = "Guake"}, floating = true },
-    {rule = {class = "yakuake"}, floating = true},
+    {rule = {class = "Guake"}, properties = {floating = true} },
+    {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
+ maximized_horizontal = false, maximized= false} },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
@@ -447,7 +501,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
 
 -- Starting some applets, etc
 
