@@ -13,21 +13,17 @@ Debian_menu["Debian_Applications_AudioVideo"] = {
 Debian_menu["Debian_Applications_Data_Management"] = {
 	{"LibreOffice Base","/usr/bin/libreoffice --base","/usr/share/icons/hicolor/32x32/apps/libreoffice-base.xpm"},
 	{"pgAdmin III","/usr/bin/pgadmin3","/usr/share/pixmaps/pgadmin3.xpm"},
-	{"Tomboy","/usr/bin/tomboy"},
 }
 Debian_menu["Debian_Applications_Editors"] = {
-	{"Emacs 23 (text)", "x-terminal-emulator -e ".."/usr/bin/emacs23 -nw"},
-	{"Emacs 23 (X11)","/usr/bin/emacs23"},
-	{"Focuswriter","/usr/bin/focuswriter","/usr/share/pixmaps/focuswriter.xpm"},
+	{"Emacs 24 (text)", "x-terminal-emulator -e ".."/usr/bin/emacs24 -nw"},
+	{"Emacs 24 (X11)","/usr/bin/emacs24"},
 	{"Gedit","/usr/bin/gedit","/usr/share/pixmaps/gedit-icon.xpm"},
-	{"GVIM","/usr/bin/vim.gnome -g -f","/usr/share/pixmaps/vim-32.xpm"},
 	{"MousePad","/usr/bin/mousepad","/usr/share/pixmaps/mousepad.xpm"},
 	{"Nano", "x-terminal-emulator -e ".."/bin/nano","/usr/share/nano/nano-menu.xpm"},
-	{"pyroom","/usr/bin/pyroom"},
 	{"Xedit","xedit"},
 }
 Debian_menu["Debian_Applications_Emulators"] = {
-	{"PlayOnLinux","/usr/bin/playonlinux"},
+	{"PlayOnLinux","/usr/bin/playonlinux","/usr/share/pixmaps/playonlinux.xpm"},
 }
 Debian_menu["Debian_Applications_File_Management"] = {
 	{"Brasero","/usr/bin/brasero"},
@@ -35,7 +31,6 @@ Debian_menu["Debian_Applications_File_Management"] = {
 	{"File-Roller","/usr/bin/file-roller","/usr/share/pixmaps/file-roller.xpm"},
 	{"mc", "x-terminal-emulator -e ".."/usr/bin/mc","/usr/share/pixmaps/mc.xpm"},
 	{"Nautilus","/usr/bin/nautilus","/usr/share/pixmaps/nautilus.xpm"},
-	{"Synapse","synapse"},
 	{"Thunar","/usr/bin/thunar"},
 	{"Xfdesktop","xfdesktop"},
 }
@@ -65,23 +60,22 @@ Debian_menu["Debian_Applications_Network"] = {
 	{ "Web Browsing", Debian_menu["Debian_Applications_Network_Web_Browsing"] },
 }
 Debian_menu["Debian_Applications_Office"] = {
-	{"AbiWord Word Processor","/usr/bin/abiword","/usr/share/pixmaps/abiword.xpm"},
 	{"gnumeric","/usr/bin/gnumeric","/usr/share/pixmaps/gnome-gnumeric.xpm"},
 	{"LibreOffice Calc","/usr/bin/libreoffice --calc","/usr/share/icons/hicolor/32x32/apps/libreoffice-calc.xpm"},
 	{"LibreOffice Impress","/usr/bin/libreoffice --impress","/usr/share/icons/hicolor/32x32/apps/libreoffice-impress.xpm"},
 	{"LibreOffice Writer","/usr/bin/libreoffice --writer","/usr/share/icons/hicolor/32x32/apps/libreoffice-writer.xpm"},
 }
 Debian_menu["Debian_Applications_Programming"] = {
-	{"Cola","/usr/bin/git-cola"},
 	{"GDB", "x-terminal-emulator -e ".."/usr/bin/gdb"},
 	{"IDLE (Python v2.7)","/usr/bin/idle-python2.7","/usr/share/pixmaps/python2.7.xpm"},
-	{"IDLE (Python v3.3)","/usr/bin/idle-python3.3","/usr/share/pixmaps/python3.3.xpm"},
 	{"Ocaml", "x-terminal-emulator -e ".."/usr/bin/ocaml","/usr/share/pixmaps/ocaml.xpm"},
 	{"Python (v2.7)", "x-terminal-emulator -e ".."/usr/bin/python2.7","/usr/share/pixmaps/python2.7.xpm"},
-	{"Python (v3.3)", "x-terminal-emulator -e ".."/usr/bin/python3.3","/usr/share/pixmaps/python3.3.xpm"},
+	{"Python (v3.4)", "x-terminal-emulator -e ".."/usr/bin/python3.4","/usr/share/pixmaps/python3.4.xpm"},
 	{"Ruby (irb1.9.1)", "x-terminal-emulator -e ".."/usr/bin/irb1.9.1"},
 	{"Tclsh8.5", "x-terminal-emulator -e ".."/usr/bin/tclsh8.5"},
+	{"Tclsh8.6", "x-terminal-emulator -e ".."/usr/bin/tclsh8.6"},
 	{"TkWish8.5","x-terminal-emulator -e /usr/bin/wish8.5"},
+	{"TkWish8.6","x-terminal-emulator -e /usr/bin/wish8.6"},
 }
 Debian_menu["Debian_Applications_Science_Data_Analysis"] = {
 	{"GNU R", "x-terminal-emulator -e ".."/usr/bin/R"},
@@ -105,7 +99,6 @@ Debian_menu["Debian_Applications_Shells"] = {
 }
 Debian_menu["Debian_Applications_Sound"] = {
 	{"gmusicbrowser","/usr/bin/gmusicbrowser","/usr/share/gmusicbrowser/pix/gmusicbrowser.xpm"},
-	{"grecord (GNOME 2.0 Recorder)","/usr/bin/gnome-sound-recorder","/usr/share/pixmaps/gnome-grecord.xpm"},
 	{"pavucontrol","/usr/bin/pavucontrol"},
 }
 Debian_menu["Debian_Applications_System_Administration"] = {
@@ -114,8 +107,12 @@ Debian_menu["Debian_Applications_System_Administration"] = {
 	{"Editres","editres"},
 	{"Gnome Control Center","/usr/bin/gnome-control-center",},
 	{"GNOME partition editor","su-to-root -X -c /usr/sbin/gparted","/usr/share/pixmaps/gparted.xpm"},
+	{"menulibre","menulibre"},
+	{"mugshot","/usr/bin/mugshot"},
+	{"Network Admin","/usr/bin/network-admin","/usr/share/gnome-system-tools/pixmaps/network.xpm"},
 	{"pppconfig", "x-terminal-emulator -e ".."su-to-root -p root -c /usr/sbin/pppconfig"},
 	{"QtConfig","/usr/lib/*/qt4/bin/qtconfig"},
+	{"Services Admin","/usr/bin/services-admin","/usr/share/gnome-system-tools/pixmaps/services.xpm"},
 	{"Shares Admin","/usr/bin/shares-admin","/usr/share/gnome-system-tools/pixmaps/shares.xpm"},
 	{"TeXconfig", "x-terminal-emulator -e ".."/usr/bin/texconfig"},
 	{"Time Admin","/usr/bin/time-admin","/usr/share/gnome-system-tools/pixmaps/time.xpm"},
@@ -148,6 +145,7 @@ Debian_menu["Debian_Applications_System_Package_Management"] = {
 }
 Debian_menu["Debian_Applications_System_Security"] = {
 	{"ClamTk Antivirus GUI","/usr/bin/clamtk","/usr/share/pixmaps/clamtk.xpm"},
+	{"light-locker-settings","light-locker-settings"},
 }
 Debian_menu["Debian_Applications_System"] = {
 	{ "Administration", Debian_menu["Debian_Applications_System_Administration"] },
@@ -163,6 +161,7 @@ Debian_menu["Debian_Applications_Terminal_Emulators"] = {
 	{"XTerm","xterm","/usr/share/pixmaps/xterm-color_32x32.xpm"},
 	{"X-Terminal as root (GKsu)","/usr/bin/gksu -u root /usr/bin/x-terminal-emulator","/usr/share/pixmaps/gksu-debian.xpm"},
 	{"XTerm (Unicode)","uxterm","/usr/share/pixmaps/xterm-color_32x32.xpm"},
+	{"YaKuake","/usr/bin/yakuake"},
 }
 Debian_menu["Debian_Applications_Text"] = {
 	{"Character map","/usr/bin/gucharmap"},
@@ -203,19 +202,15 @@ Debian_menu["Debian_Applications"] = {
 Debian_menu["Debian_Development"] = {
 	{"Brackets","/usr/bin/brackets","/opt/brackets/appshell32.png"},
 }
-Debian_menu["Debian_Games_Board"] = {
-	{"GnuChess", "x-terminal-emulator -e ".."/usr/games/gnuchess"},
-}
 Debian_menu["Debian_Games_Toys"] = {
 	{"Oclock","oclock"},
-	{"Redshift","gtk-redshift"},
+	{"Redshift","redshift-gtk"},
 	{"Xclock (analog)","xclock -analog"},
 	{"Xclock (digital)","xclock -digital -update 1"},
 	{"Xeyes","xeyes"},
 	{"Xlogo","xlogo"},
 }
 Debian_menu["Debian_Games"] = {
-	{ "Board", Debian_menu["Debian_Games_Board"] },
 	{ "Toys", Debian_menu["Debian_Games_Toys"] },
 }
 Debian_menu["Debian_Help"] = {

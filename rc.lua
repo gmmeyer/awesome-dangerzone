@@ -78,55 +78,55 @@ local layouts =
 -- }}}
 
 -- {{{ Wallpaper
--- if beautiful.wallpaper then
---     for s = 1, screen.count() do
---         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
---     end
--- end
+if beautiful.wallpaper then
+    for s = 1, screen.count() do
+        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+    end
+end
 
--- configuration - edit to your liking
--- wp_index = 1
-wp_timeout  = 100
-wp_path = "/home/greg/Pictures/Wallpapers/"
--- wp_files = { "10.jpg","11.jpg","13.png","14.jpg","15.jpg","1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.png","7.png","8.jpg","9.png", "10.jpg", "11.jpg", "13.png", "14.jpg", "15.jpg", "16.png", '17.png', '18.jpg', '19.jpg'}
+-- wp_timeout  = 100
+-- wp_path = "/home/greg/Pictures/Wallpapers/"
 
 -- Get the list of files from a directory. Must be all images or folders and non-empty. 
-function scanDir(directory)
-	local i, fileList, popen = 0, {}, io.popen
-	for filename in popen([[find "]] ..directory.. [[" -type f]]):lines() do
-	    i = i + 1
-	    fileList[i] = filename
-	end
-	return fileList
-end
+-- function scanDir(directory)
+-- 	local i, fileList, popen = 0, {}, io.popen
+-- 	for filename in popen([[find "]] ..directory.. [[" -type f]]):lines() do
+-- 	    i = i + 1
+-- 	    fileList[i] = filename
+-- 	end
+-- 	return fileList
+-- end
     
-wpList = scanDir("/home/greg/Pictures/Wallpapers")
+-- wpList = scanDir("/home/greg/Pictures/Wallpapers")
  
--- setup the timer
-wp_timer = timer { timeout = wp_timeout }
-wp_timer:connect_signal("timeout", function()
+-- -- setup the timer
+-- wp_timer = timer { timeout = wp_timeout }
+-- wp_timer:connect_signal("timeout", function()
  
-  -- set wallpaper to current index
-  if beautiful.wallpaper then
-	    for s = 1, screen.count() do
-	        gears.wallpaper.maximized(wpList[math.random(1, #wpList)], s, true)
-	    end
-	end
+--   -- set wallpaper to current index
+--   if beautiful.wallpaper then
+-- 	    for s = 1, screen.count() do
+-- 	        gears.wallpaper.maximized(wpList[math.random(1, #wpList)], s, true)
+-- 	    end
+-- 	end
  
-  -- stop the timer (we don't need multiple instances running at the same time)
-  wp_timer:stop()
+--   -- stop the timer (we don't need multiple instances running at the same time)
+--   wp_timer:stop()
  
-  -- get next random index
-  -- wp_index = math.random(1, #wpList)
+--   -- get next random index
+--   -- wp_index = math.random(1, #wpList)
  
-  --restart the timer
-  wp_timer.timeout = wp_timeout
-  wp_timer:start()
-end)
+--   --restart the timer
+--   wp_timer.timeout = wp_timeout
+--   wp_timer:start()
+-- end)
  
--- initial start when rc.lua is first run
-wp_timer:start()
+-- -- initial start when rc.lua is first run
+-- wp_timer:start()
+
 -- }}}
+
+
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
@@ -516,10 +516,10 @@ end
 
 --the applets with the function
 run_once("nm-applet")
+run_once('yakuake')
 run_once('skype')
 run_once("pidgin")
 run_once("blueman-applet")
--- run_once("synapse -s")
 run_once("xfsettingsd")
 run_once('xfce4-volumed')
 run_once('xfce4-power-manager')
