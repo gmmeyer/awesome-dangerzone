@@ -35,7 +35,6 @@ Debian_menu["Debian_Applications_File_Management"] = {
 	{"Xfdesktop","xfdesktop"},
 }
 Debian_menu["Debian_Applications_Graphics"] = {
-	{"Font Manager","/usr/bin/font-manager"},
 	{"ImageMagick","/usr/bin/display.im6 logo:","/usr/share/pixmaps/display.im6.xpm"},
 	{"LibreOffice Draw","/usr/bin/libreoffice --draw","/usr/share/icons/hicolor/32x32/apps/libreoffice-draw.xpm"},
 	{"The GIMP","/usr/bin/gimp","/usr/share/pixmaps/gimp.xpm"},
@@ -51,16 +50,11 @@ Debian_menu["Debian_Applications_Network_File_Transfer"] = {
 	{"FileZilla","/usr/bin/filezilla","/usr/share/pixmaps/filezilla.xpm"},
 	{"Transmission BitTorrent Client (GTK)","/usr/bin/transmission-gtk","/usr/share/pixmaps/transmission.xpm"},
 }
-Debian_menu["Debian_Applications_Network_Web_Browsing"] = {
-	{"Google Chrome","/opt/google/chrome/google-chrome","/opt/google/chrome/product_logo_32.xpm"},
-}
 Debian_menu["Debian_Applications_Network"] = {
 	{ "Communication", Debian_menu["Debian_Applications_Network_Communication"] },
 	{ "File Transfer", Debian_menu["Debian_Applications_Network_File_Transfer"] },
-	{ "Web Browsing", Debian_menu["Debian_Applications_Network_Web_Browsing"] },
 }
 Debian_menu["Debian_Applications_Office"] = {
-	{"gnumeric","/usr/bin/gnumeric","/usr/share/pixmaps/gnome-gnumeric.xpm"},
 	{"LibreOffice Calc","/usr/bin/libreoffice --calc","/usr/share/icons/hicolor/32x32/apps/libreoffice-calc.xpm"},
 	{"LibreOffice Impress","/usr/bin/libreoffice --impress","/usr/share/icons/hicolor/32x32/apps/libreoffice-impress.xpm"},
 	{"LibreOffice Writer","/usr/bin/libreoffice --writer","/usr/share/icons/hicolor/32x32/apps/libreoffice-writer.xpm"},
@@ -102,7 +96,6 @@ Debian_menu["Debian_Applications_Sound"] = {
 	{"pavucontrol","/usr/bin/pavucontrol"},
 }
 Debian_menu["Debian_Applications_System_Administration"] = {
-	{"bleachbit","/usr/bin/bleachbit","/usr/share/pixmaps/bleachbit.xpm"},
 	{"DSL/PPPoE configuration tool", "x-terminal-emulator -e ".."/usr/sbin/pppoeconf","/usr/share/pixmaps/pppoeconf.xpm"},
 	{"Editres","editres"},
 	{"Gnome Control Center","/usr/bin/gnome-control-center",},
@@ -132,7 +125,6 @@ Debian_menu["Debian_Applications_System_Language_Environment"] = {
 	{"Input Method Configuration", "x-terminal-emulator -e ".."/usr/bin/im-config"},
 }
 Debian_menu["Debian_Applications_System_Monitoring"] = {
-	{"GNOME system monitor","/usr/bin/gnome-system-monitor"},
 	{"htop", "x-terminal-emulator -e ".."/usr/bin/htop"},
 	{"Pstree", "x-terminal-emulator -e ".."/usr/bin/pstree.x11","/usr/share/pixmaps/pstree16.xpm"},
 	{"Top", "x-terminal-emulator -e ".."/usr/bin/top"},
