@@ -417,12 +417,14 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = {class = "Pidgin"}, 
-      properties = { tag=tags[1][2], floating = true } },
+      properties = { tag=tags[1][4], floating = true } },
     { rule = {class = "Skype"}, 
-      properties = { tag=tags[1][2], floating = true } },
-    {rule = {class = "Guake"}, properties = {floating = true} },
+      properties = { tag=tags[1][4], floating = true } },
     {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
  maximized_horizontal = false, maximized= false} },
+    {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
+                                                                            maximized_horizontal = false, 
+                                                                            maximized= false} }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
@@ -520,6 +522,7 @@ run_once('yakuake')
 run_once('skype')
 run_once("pidgin")
 run_once("blueman-applet")
+-- run_once("indicator_bluetooth")
 run_once("xfsettingsd")
 run_once('xfce4-volumed')
 run_once('xfce4-power-manager')
