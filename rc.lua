@@ -11,6 +11,8 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+awesome.font = "Ubuntu 8"
+
 -- Quake Console
 -- local quake = require("quake")
 
