@@ -15,6 +15,7 @@ awesome.font = "Ubuntu 8"
 
 -- Quake Console
 -- local quake = require("quake")
+-- local scratch = require("scratch")
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -50,7 +51,7 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 -- Note to self: how do I fix the default terminal?
-terminal = "xfce4-terminal"
+terminal = "terminator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -86,37 +87,27 @@ if beautiful.wallpaper then
     end
 end
 
--- wp_timeout  = 100
--- wp_path = "/home/greg/Pictures/Wallpapers/"
 
--- Get the list of files from a directory. Must be all images or folders and non-empty. 
--- function scanDir(directory)
--- 	local i, fileList, popen = 0, {}, io.popen
--- 	for filename in popen([[find "]] ..directory.. [[" -type f]]):lines() do
--- 	    i = i + 1
--- 	    fileList[i] = filename
--- 	end
--- 	return fileList
--- end
-    
--- wpList = scanDir("/home/greg/Pictures/Wallpapers")
+-- configuration - edit to your liking
+-- wp_index = 1
+-- wp_timeout  = 10
+-- wp_path = "/path/to/wallpapers/"
+-- wp_files = { "01.jpg", "02.jpg", "03.jpg" }
  
 -- -- setup the timer
 -- wp_timer = timer { timeout = wp_timeout }
 -- wp_timer:connect_signal("timeout", function()
  
---   -- set wallpaper to current index
---   if beautiful.wallpaper then
--- 	    for s = 1, screen.count() do
--- 	        gears.wallpaper.maximized(wpList[math.random(1, #wpList)], s, true)
--- 	    end
--- 	end
+--   -- set wallpaper to current index for all screens
+--   for s = 1, screen.count() do
+--     gears.wallpaper.maximized(wp_path .. wp_files[wp_index], s, true)
+--   end
  
 --   -- stop the timer (we don't need multiple instances running at the same time)
 --   wp_timer:stop()
  
 --   -- get next random index
---   -- wp_index = math.random(1, #wpList)
+--   wp_index = math.random( 1, #wp_files)
  
 --   --restart the timer
 --   wp_timer.timeout = wp_timeout
@@ -159,6 +150,11 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- Scan for applications
+menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/", 
+                                   "/usr/local/share/applications", 
+                                   "~/.local/share/applications" 
+                                  }
 -- }}}
 
 -- {{{ Wibox
@@ -331,6 +327,8 @@ globalkeys = awful.util.table.join(
     -- Quake Console
     -- awful.key({ modkey }, "`",
       -- function () quakeconsole[mouse.screen]:toggle() end)
+    -- Scratchpad
+    -- awful.key({modkey }, "`", scratch.drop("xfce4-terminal"))
 )
 
 clientkeys = awful.util.table.join(
@@ -521,11 +519,13 @@ end
 --the applets with the function
 run_once("nm-applet")
 run_once('yakuake')
-run_once('skype')
 run_once("pidgin")
+run_once('skype')
 run_once("blueman-applet")
 -- run_once("indicator_bluetooth")
 run_once("xfsettingsd")
-run_once('xfce4-volumed')
+run_once('pasystray')
 run_once('xfce4-power-manager')
+run_once('xfce4-volumed')
+-- run_once('xfce4-power-manager-settings')
 run_once('sleep 20m; dropbox start')

@@ -28,6 +28,8 @@ Debian_menu["Debian_Applications_File_Management"] = {
 	{"Xfdesktop","xfdesktop"},
 }
 Debian_menu["Debian_Applications_Graphics"] = {
+	{"FontForge","/usr/bin/fontforge","/usr/share/pixmaps/fontforge.xpm"},
+	{"ImageMagick","/usr/bin/display.im6 logo:","/usr/share/pixmaps/display.im6.xpm"},
 	{"LibreOffice Draw","/usr/bin/libreoffice --draw","/usr/share/icons/hicolor/32x32/apps/libreoffice-draw.xpm"},
 	{"The GIMP","/usr/bin/gimp","/usr/share/pixmaps/gimp.xpm"},
 	{"X Window Snapshot","xwd | xwud"},
@@ -83,8 +85,10 @@ Debian_menu["Debian_Applications_Shells"] = {
 }
 Debian_menu["Debian_Applications_Sound"] = {
 	{"gmusicbrowser","/usr/bin/gmusicbrowser","/usr/share/gmusicbrowser/pix/gmusicbrowser.xpm"},
+	{"pasystray","/usr/bin/pasystray"},
 	{"pavucontrol","/usr/bin/pavucontrol"},
 	{"Rhythmbox","/usr/bin/rhythmbox","/usr/share/pixmaps/rhythmbox-small.xpm"},
+	{"Xfce Mixer","/usr/bin/xfce4-mixer","/usr/share/pixmaps/xfce4-mixer.xpm"},
 }
 Debian_menu["Debian_Applications_System_Administration"] = {
 	{"DSL/PPPoE configuration tool", "x-terminal-emulator -e ".."/usr/sbin/pppoeconf","/usr/share/pixmaps/pppoeconf.xpm"},
@@ -96,6 +100,7 @@ Debian_menu["Debian_Applications_System_Administration"] = {
 	{"QtConfig","/usr/lib/*/qt4/bin/qtconfig"},
 	{"Services Admin","/usr/bin/services-admin","/usr/share/gnome-system-tools/pixmaps/services.xpm"},
 	{"Shares Admin","/usr/bin/shares-admin","/usr/share/gnome-system-tools/pixmaps/shares.xpm"},
+	{"TeXconfig", "x-terminal-emulator -e ".."/usr/bin/texconfig"},
 	{"Time Admin","/usr/bin/time-admin","/usr/share/gnome-system-tools/pixmaps/time.xpm"},
 	{"User accounts Admin","/usr/bin/users-admin","/usr/share/gnome-system-tools/pixmaps/users.xpm"},
 	{"Xclipboard","xclipboard"},
@@ -105,6 +110,7 @@ Debian_menu["Debian_Applications_System_Administration"] = {
 	{"Xrefresh","xrefresh"},
 }
 Debian_menu["Debian_Applications_System_Hardware"] = {
+	{"gpointing-device-settings","/usr/bin/gpointing-device-settings"},
 	{"Xvidtune","xvidtune"},
 }
 Debian_menu["Debian_Applications_System_Language_Environment"] = {
@@ -112,6 +118,7 @@ Debian_menu["Debian_Applications_System_Language_Environment"] = {
 }
 Debian_menu["Debian_Applications_System_Monitoring"] = {
 	{"GNOME system monitor","/usr/bin/gnome-system-monitor"},
+	{"htop", "x-terminal-emulator -e ".."/usr/bin/htop"},
 	{"Pstree", "x-terminal-emulator -e ".."/usr/bin/pstree.x11","/usr/share/pixmaps/pstree16.xpm"},
 	{"Top", "x-terminal-emulator -e ".."/usr/bin/top"},
 	{"Xconsole","xconsole -file /dev/xconsole"},
@@ -152,6 +159,7 @@ Debian_menu["Debian_Applications_Viewers"] = {
 	{"Eye of GNOME","/usr/bin/eog","/usr/share/pixmaps/gnome-eog.xpm"},
 	{"Shotwell","/usr/bin/shotwell"},
 	{"Xditview","xditview"},
+	{"XDvi","/usr/bin/xdvi"},
 }
 Debian_menu["Debian_Applications"] = {
 	{ "Accessibility", Debian_menu["Debian_Applications_Accessibility"] },
@@ -176,6 +184,7 @@ Debian_menu["Debian_Games_Card"] = {
 }
 Debian_menu["Debian_Games_Toys"] = {
 	{"Oclock","oclock"},
+	{"Redshift","redshift-gtk"},
 	{"Xclock (analog)","xclock -analog"},
 	{"Xclock (digital)","xclock -digital -update 1"},
 	{"Xeyes","xeyes"},
@@ -187,6 +196,7 @@ Debian_menu["Debian_Games"] = {
 }
 Debian_menu["Debian_Help"] = {
 	{"Info", "x-terminal-emulator -e ".."info"},
+	{"TeXdoctk","/usr/bin/texdoctk"},
 	{"Xman","xman"},
 	{"yelp","/usr/bin/yelp"},
 }
