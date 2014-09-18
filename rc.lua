@@ -18,7 +18,7 @@ awesome.font = "Ubuntu 8"
 
 -- Quake Console
 -- local quake = require("quake")
--- local scratch = require("scratch")
+local scratch = require("scratch")
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -96,27 +96,27 @@ end
 -- wp_timeout  = 10
 -- wp_path = "/path/to/wallpapers/"
 -- wp_files = { "01.jpg", "02.jpg", "03.jpg" }
- 
+
 -- -- setup the timer
 -- wp_timer = timer { timeout = wp_timeout }
 -- wp_timer:connect_signal("timeout", function()
- 
+
 --   -- set wallpaper to current index for all screens
 --   for s = 1, screen.count() do
 --     gears.wallpaper.maximized(wp_path .. wp_files[wp_index], s, true)
 --   end
- 
+
 --   -- stop the timer (we don't need multiple instances running at the same time)
 --   wp_timer:stop()
- 
+
 --   -- get next random index
 --   wp_index = math.random( 1, #wp_files)
- 
+
 --   --restart the timer
 --   wp_timer.timeout = wp_timeout
 --   wp_timer:start()
 -- end)
- 
+
 -- -- initial start when rc.lua is first run
 -- wp_timer:start()
 
@@ -154,9 +154,9 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- Scan for applications
-menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/", 
-                                   "/usr/local/share/applications", 
-                                   "~/.local/share/applications" 
+menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/",
+                                   "/usr/local/share/applications",
+                                   "~/.local/share/applications"
                                   }
 -- }}}
 
@@ -242,6 +242,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(obvious.battery())
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
@@ -325,13 +326,13 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)--,
-    
+    awful.key({ modkey }, "p", function() menubar.show() end),
+
     -- Quake Console
-    -- awful.key({ modkey }, "`",
+    -- awful.key({ modkey,  }, "`",
       -- function () quakeconsole[mouse.screen]:toggle() end)
     -- Scratchpad
-    -- awful.key({modkey }, "`", scratch.drop("xfce4-terminal"))
+    awful.key({modkey }, "`", function() scratch("urxvt -name urxvt_drop -e tmux", "top", "center", 0.95, 0.40) end)
 )
 
 clientkeys = awful.util.table.join(
@@ -419,14 +420,14 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-    { rule = {class = "Pidgin"}, 
+    { rule = {class = "Pidgin"},
       properties = { tag=tags[1][2], floating = true } },
-    { rule = {class = "Skype"}, 
+    { rule = {class = "Skype"},
       properties = { tag=tags[1][2], floating = true } },
     {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
  maximized_horizontal = false, maximized= false} },
     {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
-                                                                            maximized_horizontal = false, 
+                                                                            maximized_horizontal = false,
                                                                             maximized= false} }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
@@ -520,8 +521,10 @@ function run_once(cmd)
 end
 
 --the applets with the function
+-- run_once("compton --backend glx --paint-on-overlay --vsync opengl-swc")
 run_once("nm-applet")
-run_once('yakuake')
+-- run_once('yakuake')
+-- run_once('guake')
 run_once('skype')
 run_once("blueman-applet")
 -- run_once("indicator_bluetooth")
