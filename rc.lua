@@ -425,8 +425,6 @@ awful.rules.rules = {
     { rule = {class = "Skype"},
       properties = { tag=tags[1][2], floating = true } },
     {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
- maximized_horizontal = false, maximized= false} },
-    {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
                                                                             maximized_horizontal = false,
                                                                             maximized= false} }
     -- Set Firefox to always map on tags number 2 of screen 1.
