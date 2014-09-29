@@ -521,17 +521,12 @@ function run_once(cmd)
 end
 
 --the applets with the function
--- run_once("compton --backend glx --paint-on-overlay --vsync opengl-swc")
 run_once("nm-applet")
--- run_once('yakuake')
--- run_once('guake')
 run_once('skype')
 run_once("blueman-applet")
--- run_once("indicator_bluetooth")
 run_once("xfsettingsd")
 run_once('pasystray')
 run_once("pidgin")
-run_once('xfce4-power-manager --no-daemon &')
+run_once('xfce4-power-manager')
 run_once('xfce4-volumed --no-daemon &')
--- run_once('xfce4-power-manager-settings')
 run_once('sleep 20m; dropbox start')
