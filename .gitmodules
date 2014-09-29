@@ -1,0 +1,6 @@
+[submodule "obvious"]
+	path = obvious
+	url = git@github.com:hoelzro/obvious.git
+[submodule "radical"]
+	path = radical
+	url = git@github.com:Elv13/radical.git
