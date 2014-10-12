@@ -130,6 +130,7 @@ tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    -- tags[s] = awful.tag({"www", "msgs", "refs", "tests", "term", "term2", "media", 8, 9 }, s, layouts[1])
 end
 -- }}}
 
@@ -525,6 +526,6 @@ run_once("blueman-applet")
 run_once("xfsettingsd")
 run_once('pasystray')
 run_once("pidgin")
-run_once('xfce4-power-manager --no-daemon &')
-run_once('xfce4-volumed --no-daemon &')
+run_once('xfce4-power-manager --no-daemon')
+run_once('xfce4-volumed --no-daemon')
 run_once('sleep 20m; dropbox start')
