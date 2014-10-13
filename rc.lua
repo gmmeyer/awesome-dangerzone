@@ -53,8 +53,8 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
--- Note to self: how do I fix the default terminal?
 terminal = "terminator"
+-- terminal = "urxvt -e tmux"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
