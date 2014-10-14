@@ -53,8 +53,8 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
--- terminal = "urxvt -e tmux"
+-- terminal = "terminator"
+terminal = "urxvt -e tmux"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -529,3 +529,4 @@ run_once("pidgin")
 run_once('xfce4-power-manager --no-daemon')
 run_once('xfce4-volumed --no-daemon')
 run_once('sleep 20m; dropbox start')
+-- os.execute("eval $(gnome-keyring-daemon -s --components=pkcs11,secret,ssh,gpg) &")
