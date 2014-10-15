@@ -529,4 +529,6 @@ run_once("pidgin")
 run_once('xfce4-power-manager --no-daemon')
 run_once('xfce4-volumed --no-daemon')
 run_once('sleep 20m; dropbox start')
+
+os.execute("eval $(xrdb ~/.Xresources) &")
 -- os.execute("eval $(gnome-keyring-daemon -s --components=pkcs11,secret,ssh,gpg) &")
