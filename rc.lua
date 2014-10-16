@@ -329,10 +329,8 @@ globalkeys = awful.util.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end),
 
-    -- Quake Console
-    -- awful.key({ modkey,  }, "`",
-      -- function () quakeconsole[mouse.screen]:toggle() end)
     -- Scratchpad
+    -- This launches the scratchpad
     awful.key({modkey }, "`", function() scratch("urxvt -name urxvt_drop -e tmux", "top", "center", 0.95, 0.40) end)
 )
 
