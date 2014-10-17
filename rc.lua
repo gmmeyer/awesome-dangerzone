@@ -54,7 +54,7 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "terminator"
-terminal = "urxvt -e tmux"
+terminal = 'urxvt'
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -331,7 +331,7 @@ globalkeys = awful.util.table.join(
 
     -- Scratchpad
     -- This launches the scratchpad
-    awful.key({modkey }, "`", function() scratch("urxvt -name urxvt_drop -e tmux", "top", "center", 0.95, 0.40) end)
+    awful.key({modkey }, "`", function() scratch("urxvt -name urxvt_drop", "top", "center", 0.95, 0.40) end)
 )
 
 clientkeys = awful.util.table.join(
@@ -518,6 +518,7 @@ function run_once(cmd)
 end
 
 --the applets with the function
+run_once("tmux")
 run_once("nm-applet")
 run_once('skype')
 run_once("blueman-applet")
