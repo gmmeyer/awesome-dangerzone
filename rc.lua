@@ -14,7 +14,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
-awesome.font = "UbuntuMono 8"
+awesome.font = "UbuntuMono 10"
 
 -- Quake Console
 -- local quake = require("quake")
@@ -50,7 +50,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "terminator"
@@ -525,7 +525,7 @@ run_once("blueman-applet")
 run_once("xfsettingsd")
 run_once('pasystray')
 run_once("pidgin")
-run_once('xfce4-power-manager --no-daemon')
+run_once('xfce4-power-manager')
 run_once('xfce4-volumed --no-daemon')
 run_once('sleep 20m; dropbox start')
 run_once('emacs --daemon')
