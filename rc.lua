@@ -530,5 +530,6 @@ run_once('xfce4-volumed --no-daemon')
 run_once('sleep 20m; dropbox start')
 run_once('emacs --daemon')
 
-os.execute("eval $(xrdb ~/.Xresources) &")
+-- os.execute("eval $(xrdb ~/.Xresources) &")
+awful.util.spawn_with_shell("eval $(xrdb ~/.Xresources) &")
 -- os.execute("eval $(gnome-keyring-daemon -s --components=pkcs11,secret,ssh,gpg) &")
