@@ -197,6 +197,7 @@ volumewidget = lain.widgets.alsa({
         widget:set_text(" " .. volume_now.level .. "% ")
     end
 })
+volumewidgetbg = wibox.widget.background(volumewidget, "#313131")
 
 -- Net
 neticon = wibox.widget.imagebox(beautiful.widget_net)
@@ -207,7 +208,10 @@ netwidget = wibox.widget.background(lain.widgets.net({
                           .. " " ..
                           markup("#46A8C3", " " .. net_now.sent .. " "))
     end
-}), "#313131")
+                                                    }), "#313131")
+
+mysystray = wibox.widget.systray()
+theme.bg_systray = "#313131"
 
 -- Separators
 spr = wibox.widget.textbox(' ')
@@ -301,8 +305,8 @@ for s = 1, screen.count() do
     right_layout:add(spr)
     right_layout:add(arrl)
     right_layout:add(arrl_ld)
-    right_layout:add(volicon)
-    right_layout:add(volumewidget)
+    right_layout:add(wibox.widget.background(volicon, "#313131"))
+    right_layout:add(volumewidgetbg)
     right_layout:add(arrl_dl)
     right_layout:add(memicon)
     right_layout:add(memwidget)
@@ -319,7 +323,7 @@ for s = 1, screen.count() do
     right_layout:add(baticon)
     right_layout:add(batwidget)
     right_layout:add(arrl_ld)
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
+    if s == 1 then right_layout:add(mysystray) end
     right_layout:add(arrl_dl)
     right_layout:add(mytextclock)
     right_layout:add(spr)
