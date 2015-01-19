@@ -32,6 +32,33 @@ if awesome.startup_errors then
                      text = awesome.startup_errors })
 end
 
+
+-- Starting some applets, etc
+
+--a function to start them and not start them again if I have to reload awesome
+function run_once(cmd)
+  findme = cmd
+  firstspace = cmd:find(" ")
+  if firstspace then
+    findme = cmd:sub(0, firstspace-1)
+  end
+  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+end
+
+--the applets with the function
+awful.util.spawn_with_shell("eval $(xrdb ~/.Xresources) &")
+run_once("tmux")
+run_once("xfsettingsd")
+run_once("nm-applet")
+run_once('xfce4-power-manager')
+run_once('xfce4-volumed --no-daemon')
+run_once("blueman-applet")
+run_once('pasystray')
+run_once('skype')
+run_once("pidgin")
+run_once('sleep 20m; dropbox start')
+
+
 -- Handle runtime errors after startup
 do
     local in_error = false
@@ -583,28 +610,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
--- Starting some applets, etc
-
---a function to start them and not start them again if I have to reload awesome
-function run_once(cmd)
-  findme = cmd
-  firstspace = cmd:find(" ")
-  if firstspace then
-    findme = cmd:sub(0, firstspace-1)
-  end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
-end
-
---the applets with the function
-awful.util.spawn_with_shell("eval $(xrdb ~/.Xresources) &")
-run_once("tmux")
-run_once("xfsettingsd")
-run_once("nm-applet")
-run_once('xfce4-power-manager')
-run_once('xfce4-volumed --no-daemon')
-run_once("blueman-applet")
-run_once('pasystray')
-run_once('skype')
-run_once("pidgin")
-run_once('sleep 20m; dropbox start')
