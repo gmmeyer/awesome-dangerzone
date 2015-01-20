@@ -4,6 +4,10 @@ awful.autofocus = require("awful.autofocus")
 
 local menubar = require("menubar")
 
+-- Quake Console
+local scratch = require("scratch")
+
+
 local client = client
 local capi = {
   screen = screen,
