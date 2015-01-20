@@ -163,7 +163,10 @@ memwidget = lain.widgets.mem({
 })
 
 -- CPU
-cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
+cpuicon = wibox.widget.background(wibox.widget.imagebox(
+                                     beautiful.widget_cpu),
+                                  "#313131")
+
 cpuwidget = wibox.widget.background(lain.widgets.cpu({
     settings = function()
         widget:set_text(" " .. cpu_now.usage .. "% ")
@@ -179,7 +182,10 @@ tempwidget = lain.widgets.temp({
 })
 
 -- / fs
-fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
+fsicon = wibox.widget.background(wibox.widget.imagebox(
+                                    beautiful.widget_hdd),
+                                 "#313131")
+
 fswidget = lain.widgets.fs({
     settings  = function()
         widget:set_text(" " .. fs_now.used .. "% ")
