@@ -14,7 +14,7 @@ end
 
 local autorun = {}
 
-function autorun.init(ctx)
+function autorun.init(context)
    -- This loads .Xresources
    -- I can't check if this has been loaded,
    -- but, that's okay, I'm not adding to the already loaded configs,
@@ -36,6 +36,10 @@ function autorun.init(ctx)
    -- but I'm gonna try it without on the mac
    run_once('dropbox start')
    --run_once('sleep 20m; dropbox start')
+
+   for _, item in ipairs(awesome_context.autorun) do
+      awful.util.spawn_with_shell(item)
+   end
 end
 
 return autorun

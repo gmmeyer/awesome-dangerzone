@@ -4,10 +4,22 @@ awful.autofocus = require("awful.autofocus")
 
 local menubar = require("menubar")
 
+local client = client
+local capi = {
+   screen = screen,
+   client = client,
+   root = root,
+   awesome = awesome,
+}
+
 
 local keybinds = {}
 
 function keybinds.init(context)
+
+   local modkey = context.modkey
+   local altkey = context.altkey
+   local cmd = context.cmd
 
    -- {{{ Mouse bindings
    root.buttons(awful.util.table.join(
