@@ -23,6 +23,10 @@ local scratch = require("scratch")
 -- Load Debian menu entries
 require("debian.menu")
 
+local context = {
+
+}
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -31,33 +35,6 @@ if awesome.startup_errors then
                      title = "Oops, there were errors during startup!",
                      text = awesome.startup_errors })
 end
-
-
--- Starting some applets, etc
-
---a function to start them and not start them again if I have to reload awesome
-function run_once(cmd)
-  findme = cmd
-  firstspace = cmd:find(" ")
-  if firstspace then
-    findme = cmd:sub(0, firstspace-1)
-  end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
-end
-
---the applets with the function
-awful.util.spawn_with_shell("eval $(xrdb ~/.Xresources) &")
-run_once("tmux")
-run_once("xfsettingsd")
-run_once("nm-applet")
-run_once('xfce4-power-manager')
-run_once('xfce4-volumed --no-daemon')
-run_once("blueman-applet")
-run_once('pasystray')
-run_once('skype')
-run_once("pidgin")
-run_once('sleep 20m; dropbox start')
-
 
 -- Handle runtime errors after startup
 do
@@ -74,6 +51,11 @@ do
     end)
 end
 -- }}}
+
+local config = require('config')
+config.autorun.init(context)
+
+
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
@@ -510,33 +492,6 @@ clientbuttons = awful.util.table.join(
 root.keys(globalkeys)
 -- }}}
 
--- {{{ Rules
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     keys = clientkeys,
-                     buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-    { rule = {class = "Pidgin"},
-      properties = { tag=tags[1][2], floating = true } },
-    { rule = {class = "Skype"},
-      properties = { tag=tags[1][2], floating = true } },
-    {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
-                                                                            maximized_horizontal = false,
-                                                                            maximized= false} }
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
-}
--- }}}
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
