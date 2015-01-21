@@ -360,7 +360,7 @@ for s = 1, screen.count() do
   right_layout:add(mytextclock)
   right_layout:add(spr)
   right_layout:add(arrl_ld)
-  right_layout:add(mylayoutbox[s])
+  right_layout:add(wibox.widget.background(mylayoutbox[s], "#313131"))
 
   -- Now bring it all together (with the tasklist in the middle)
   local layout = wibox.layout.align.horizontal()
