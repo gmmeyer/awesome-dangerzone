@@ -42,7 +42,7 @@ function run_once(cmd)
   if firstspace then
     findme = cmd:sub(0, firstspace-1)
   end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+  awful.util.spawn_with_shell("pgrep -u $USER -f " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
 --the applets with the function
@@ -56,6 +56,7 @@ run_once("blueman-applet")
 run_once('pasystray')
 run_once('skype')
 run_once("pidgin")
+run_once("scudcloud")
 run_once('sleep 20m; dropbox start')
 
 
@@ -534,6 +535,8 @@ awful.rules.rules = {
   { rule = {class = "Pidgin"},
     properties = { tag=tags[1][2], floating = true } },
   { rule = {class = "Skype"},
+    properties = { tag=tags[1][2], floating = true } },
+  { rule = {class = "Scudcloud"},
     properties = { tag=tags[1][2], floating = true } },
   {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
                                              maximized_horizontal = false,
