@@ -7,7 +7,7 @@
 --   * http://sam.zoy.org/wtfpl/COPYING
 -------------------------------------------------------------------
 -- To use this module add:
---   local drop = require("drop")
+--   local drop = require("scratch")
 -- to the top of your rc.lua, and call it from a keybinding:
 --   drop(prog, vert, horiz, width, height, sticky, screen)
 --
@@ -55,7 +55,7 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
     if not dropdown[prog] then
         dropdown[prog] = {}
 
-        -- Add unmanage signal for drop programs
+        -- Add unmanage signal for scratchdrop programs
         attach_signal("unmanage", function (c)
             for scr, cl in pairs(dropdown[prog]) do
                 if cl == c then
@@ -69,25 +69,25 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
         spawnw = function (c)
             dropdown[prog][screen] = c
 
-            -- drop clients are floaters
+            -- Scratchdrop clients are floaters
             awful.client.floating.set(c, true)
 
             -- Client geometry and placement
             local screengeom = capi.screen[screen].workarea
 
-            if width  <= 1 then width  = (screengeom.width  * width) - 3 end
+            if width  <= 1 then width  = screengeom.width  * width  end
             if height <= 1 then height = screengeom.height * height end
 
             if     horiz == "left"  then x = screengeom.x
             elseif horiz == "right" then x = screengeom.width - width
-            else   x =  screengeom.x+(screengeom.width-width)/2 - 1 end
+            else   x =  screengeom.x+(screengeom.width-width)/2 end
 
             if     vert == "bottom" then y = screengeom.height + screengeom.y - height
             elseif vert == "center" then y = screengeom.y+(screengeom.height-height)/2
-            else   y =  screengeom.y end
+            else   y =  screengeom.y - screengeom.y end
 
             -- Client properties
-            c:geometry({ x = x, y = y, width = width, height = height })
+            c:geometry({ x = x, y = y + mywibox[mouse.screen].height, width = width - 2, height = height })
             c.ontop = true
             c.above = true
             c.skip_taskbar = true
@@ -101,7 +101,7 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
 
         -- Add manage signal and spawn the program
         attach_signal("manage", spawnw)
-        awful.util.spawn_with_shell(prog, false) -- original without '_with_shell'
+        awful.util.spawn(prog, false)
     else
         -- Get a running client
         c = dropdown[prog][screen]
@@ -114,8 +114,8 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
         -- Focus and raise if hidden
         if c.hidden then
             -- Make sure it is centered
-            if vert  == "center" then awful.placement.center_vertical(c)   end
-            if horiz == "center" then awful.placement.center_horizontal(c) end
+            --if vert  == "center" then awful.placement.center_vertical(c)   end
+            --if horiz == "center" then awful.placement.center_horizontal(c) end
             c.hidden = false
             c:raise()
             capi.client.focus = c
