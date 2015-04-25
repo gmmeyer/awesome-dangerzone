@@ -57,7 +57,7 @@ run_once('pasystray')
 run_once('skype')
 run_once("pidgin")
 --run_once("scudcloud")
-run_once('sleep 20m; dropbox start')
+run_once('dropbox start')
 
 
 -- Handle runtime errors after startup
