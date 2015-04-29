@@ -59,6 +59,8 @@ run_once("pidgin")
 --run_once("scudcloud")
 run_once('dropbox start')
 
+run_once('killall xfce4-notifyd')
+
 
 -- Handle runtime errors after startup
 do
