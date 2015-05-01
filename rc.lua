@@ -58,6 +58,7 @@ run_once('skype')
 run_once("pidgin")
 --run_once("scudcloud")
 run_once('dropbox start')
+run_once('light-locker')
 
 run_once('killall xfce4-notifyd')
 
@@ -98,11 +99,11 @@ editor_cmd = terminal .. " -e " .. editor
 local layouts = {
   awful.layout.suit.floating,
   awful.layout.suit.tile,
-  -- awful.layout.suit.tile.left,
-  awful.layout.suit.tile.bottom,
-  -- awful.layout.suit.tile.top,
+  awful.layout.suit.tile.left,
   awful.layout.suit.fair,
   awful.layout.suit.fair.horizontal,
+  awful.layout.suit.tile.bottom,
+  -- awful.layout.suit.tile.top,
   -- awful.layout.suit.max,
   -- awful.layout.suit.magnifier
 }
@@ -528,8 +529,10 @@ awful.rules.rules = {
     properties = { tag=tags[1][2], floating = true } },
   { rule = {class = "Skype"},
     properties = { tag=tags[1][2], floating = true } },
+
   { rule = {class = "Scudcloud"},
     properties = { tag=tags[1][2], floating = true } },
+
   {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
                                              maximized_horizontal = false,
                                              maximized= false} }
