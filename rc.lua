@@ -2,7 +2,7 @@
 local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
-awful.autofocus = require("awful.autofocus")
+require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 local vicious = require("vicious")
