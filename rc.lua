@@ -15,7 +15,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local lain = require("lain")
 
-awesome.font = "Ubuntu 14"
+awesome.font = "Ubuntu Mono 16"
 
 -- Quake Console
 local scratch = require("scratch")
