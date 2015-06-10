@@ -15,7 +15,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local lain = require("lain")
 
-awesome.font = "Ubuntu Mono 16"
+-- awesome.font = "Ubuntu Mono 16"
 
 -- Quake Console
 local scratch = require("scratch")
@@ -47,9 +47,9 @@ end
 
 --the applets with the function
 awful.util.spawn_with_shell("eval $(xrdb ~/.Xresources) &")
-run_once("tmux")
+-- run_once("tmux")
 run_once("xfsettingsd")
-run_once("nm-applet")
+run_once("wicd-gtk")
 run_once('xfce4-power-manager')
 run_once('xfce4-volumed --no-daemon')
 run_once("blueman-applet")
