@@ -49,7 +49,7 @@ end
 awful.util.spawn_with_shell("eval $(xrdb ~/.Xresources) &")
 -- run_once("tmux")
 run_once("xfsettingsd")
-run_once("nm-applet")
+-- run_once("nm-applet")
 run_once('xfce4-power-manager')
 run_once('xfce4-volumed')
 run_once("blueman-applet")
@@ -158,15 +158,12 @@ memwidget = lain.widgets.mem({
 })
 
 -- CPU
-cpuicon = wibox.widget.background(wibox.widget.imagebox(
-                                    beautiful.widget_cpu),
-                                  "#313131")
-
-cpuwidget = wibox.widget.background(lain.widgets.cpu({
-                                        settings = function()
-                                          widget:set_text(" " .. cpu_now.usage .. "% ")
-                                        end
-                                                    }), "#313131")
+cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
+cpuwidget = lain.widgets.cpu({
+    settings = function()
+        widget:set_text(" " .. cpu_now.usage .. "% ")
+    end
+})
 
 -- Coretemp
 tempicon = wibox.widget.imagebox(beautiful.widget_temp)
@@ -177,16 +174,12 @@ tempwidget = lain.widgets.temp({
 })
 
 -- / fs
-fsicon = wibox.widget.background(wibox.widget.imagebox(
-                                   beautiful.widget_hdd),
-                                 "#313131")
-
+fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
 fswidget = lain.widgets.fs({
     settings  = function()
-      widget:set_text(" " .. fs_now.used .. "% ")
+        widget:set_text(" " .. fs_now.used .. "% ")
     end
 })
-fswidgetbg = wibox.widget.background(fswidget, "#313131")
 
 -- Battery
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
@@ -211,34 +204,33 @@ batwidget = lain.widgets.bat({
 volicon = wibox.widget.imagebox(beautiful.widget_vol)
 volumewidget = lain.widgets.alsa({
     settings = function()
-      if volume_now.status == "off" then
-        volicon:set_image(beautiful.widget_vol_mute)
-      elseif tonumber(volume_now.level) == 0 then
-        volicon:set_image(beautiful.widget_vol_no)
-      elseif tonumber(volume_now.level) <= 50 then
-        volicon:set_image(beautiful.widget_vol_low)
-      else
-        volicon:set_image(beautiful.widget_vol)
-      end
+        if volume_now.status == "off" then
+            volicon:set_image(beautiful.widget_vol_mute)
+        elseif tonumber(volume_now.level) == 0 then
+            volicon:set_image(beautiful.widget_vol_no)
+        elseif tonumber(volume_now.level) <= 50 then
+            volicon:set_image(beautiful.widget_vol_low)
+        else
+            volicon:set_image(beautiful.widget_vol)
+        end
 
-      widget:set_text(" " .. volume_now.level .. "% ")
+        widget:set_text(" " .. volume_now.level .. "% ")
     end
 })
-volumewidgetbg = wibox.widget.background(volumewidget, "#313131")
 
 -- Net
 neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
-netwidget = wibox.widget.background(lain.widgets.net({
-                                        settings = function()
-                                          widget:set_markup(markup("#7AC82E", " " .. net_now.received)
-                                                              .. " " ..
-                                                              markup("#46A8C3", " " .. net_now.sent .. " "))
-                                        end
-                                                    }), "#313131")
+netwidget = lain.widgets.net({
+    settings = function()
+        widget:set_markup(markup("#7AC82E", " " .. net_now.received)
+                          .. " " ..
+                          markup("#46A8C3", " " .. net_now.sent .. " "))
+    end
+})
 
 mysystray = wibox.widget.systray()
-theme.bg_systray = "#313131"
+-- theme.bg_systray = "#313131"
 
 -- Separators
 spr = wibox.widget.textbox(' ')
@@ -326,35 +318,38 @@ for s = 1, screen.count() do
   left_layout:add(mypromptbox[s])
   left_layout:add(spr)
 
-  -- Widgets that are aligned to the right
-  local right_layout = wibox.layout.fixed.horizontal()
-  right_layout:add(spr)
+  -- Widgets that are aligned to the upper right
+  local right_layout_toggle = true
+  local function right_layout_add (...)
+      local arg = {...}
+      if right_layout_toggle then
+          right_layout:add(arrl_ld)
+          for i, n in pairs(arg) do
+              right_layout:add(wibox.widget.background(n ,beautiful.bg_focus))
+          end
+      else
+          right_layout:add(arrl_dl)
+          for i, n in pairs(arg) do
+              right_layout:add(n)
+          end
+      end
+      right_layout_toggle = not right_layout_toggle
+  end
+
+  right_layout = wibox.layout.fixed.horizontal()
   right_layout:add(arrl)
-  right_layout:add(arrl_ld)
-  right_layout:add(wibox.widget.background(volicon, "#313131"))
-  right_layout:add(volumewidgetbg)
-  right_layout:add(arrl_dl)
-  right_layout:add(memicon)
-  right_layout:add(memwidget)
-  right_layout:add(arrl_ld)
-  right_layout:add(cpuicon)
-  right_layout:add(cpuwidget)
-  right_layout:add(arrl_dl)
-  right_layout:add(tempicon)
-  right_layout:add(tempwidget)
-  right_layout:add(arrl_ld)
-  right_layout:add(fsicon)
-  right_layout:add(fswidgetbg)
-  right_layout:add(arrl_dl)
-  right_layout:add(baticon)
-  right_layout:add(batwidget)
-  right_layout:add(arrl_ld)
-  if s == 1 then right_layout:add(mysystray) end
-  right_layout:add(arrl_dl)
-  right_layout:add(mytextclock)
-  right_layout:add(spr)
-  right_layout:add(arrl_ld)
-  right_layout:add(wibox.widget.background(mylayoutbox[s], "#313131"))
+  right_layout_add(volicon, volumewidget)
+  right_layout_add(cpuicon, cpuwidget)
+  right_layout_add(memicon, memwidget)
+  right_layout_add(fsicon, fswidget)
+  right_layout_add(tempicon, tempwidget)
+  right_layout_add(neticon, netwidget)
+  right_layout_add(baticon, batwidget)
+  if s == 1 then
+    right_layout_add(mysystray)
+  end
+  right_layout_add(mytextclock, spr)
+  right_layout_add(mylayoutbox[s])
 
   -- Now bring it all together (with the tasklist in the middle)
   local layout = wibox.layout.align.horizontal()
