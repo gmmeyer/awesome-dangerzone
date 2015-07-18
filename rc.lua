@@ -130,7 +130,7 @@ memwidget = lain.widgets.mem({
 cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
 cpuwidget = lain.widgets.cpu({
     settings = function()
-        widget:set_text(" " .. cpu_now.usage .. "% ")
+      widget:set_text(" " .. cpu_now.usage .. "% ")
     end
 })
 
@@ -146,7 +146,7 @@ tempwidget = lain.widgets.temp({
 fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
 fswidget = lain.widgets.fs({
     settings  = function()
-        widget:set_text(" " .. fs_now.used .. "% ")
+      widget:set_text(" " .. fs_now.used .. "% ")
     end
 })
 
@@ -173,17 +173,17 @@ batwidget = lain.widgets.bat({
 volicon = wibox.widget.imagebox(beautiful.widget_vol)
 volumewidget = lain.widgets.alsa({
     settings = function()
-        if volume_now.status == "off" then
-            volicon:set_image(beautiful.widget_vol_mute)
-        elseif tonumber(volume_now.level) == 0 then
-            volicon:set_image(beautiful.widget_vol_no)
-        elseif tonumber(volume_now.level) <= 50 then
-            volicon:set_image(beautiful.widget_vol_low)
-        else
-            volicon:set_image(beautiful.widget_vol)
-        end
+      if volume_now.status == "off" then
+        volicon:set_image(beautiful.widget_vol_mute)
+      elseif tonumber(volume_now.level) == 0 then
+        volicon:set_image(beautiful.widget_vol_no)
+      elseif tonumber(volume_now.level) <= 50 then
+        volicon:set_image(beautiful.widget_vol_low)
+      else
+        volicon:set_image(beautiful.widget_vol)
+      end
 
-        widget:set_text(" " .. volume_now.level .. "% ")
+      widget:set_text(" " .. volume_now.level .. "% ")
     end
 })
 
@@ -192,7 +192,7 @@ neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 netwidget = lain.widgets.net({
     settings = function()
-        widget:set_markup(markup("#7AC82E", " " .. net_now.received)
+      widget:set_markup(markup("#7AC82E", " " .. net_now.received)
                           .. " " ..
                           markup("#46A8C3", " " .. net_now.sent .. " "))
     end
@@ -290,19 +290,19 @@ for s = 1, screen.count() do
   -- Widgets that are aligned to the upper right
   local right_layout_toggle = true
   local function right_layout_add (...)
-      local arg = {...}
-      if right_layout_toggle then
-          right_layout:add(arrl_ld)
-          for i, n in pairs(arg) do
-              right_layout:add(wibox.widget.background(n ,beautiful.bg_focus))
-          end
-      else
-          right_layout:add(arrl_dl)
-          for i, n in pairs(arg) do
-              right_layout:add(n)
-          end
+    local arg = {...}
+    if right_layout_toggle then
+      right_layout:add(arrl_ld)
+      for i, n in pairs(arg) do
+        right_layout:add(wibox.widget.background(n ,beautiful.bg_focus))
       end
-      right_layout_toggle = not right_layout_toggle
+    else
+      right_layout:add(arrl_dl)
+      for i, n in pairs(arg) do
+        right_layout:add(n)
+      end
+    end
+    right_layout_toggle = not right_layout_toggle
   end
 
   right_layout = wibox.layout.fixed.horizontal()
@@ -496,6 +496,13 @@ awful.rules.rules = {
 
   { rule = {class = "Scudcloud"},
     properties = { tag=tags[1][2], floating = true } },
+
+  { rule = {class = "Slack"},
+    properties = { tag=tags[1][2], floating = true } },
+
+  { rule = {class = "slack"},
+    properties = { tag=tags[1][2], floating = true } },
+
 
   {rule = {class = "Yakuake"}, properties = {floating = true,  maximized_vertical   = false,
                                              maximized_horizontal = false,
