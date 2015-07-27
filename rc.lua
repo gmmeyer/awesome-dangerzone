@@ -110,6 +110,7 @@ menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/",
 
 -- {{{ Wibox
 markup = lain.util.markup
+separators = lain.util.separators
 
 -- Textclock
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
@@ -205,11 +206,8 @@ mysystray = wibox.widget.systray()
 spr = wibox.widget.textbox(' ')
 arrl = wibox.widget.imagebox()
 arrl:set_image(beautiful.arrl)
-arrl_dl = wibox.widget.imagebox()
-arrl_dl:set_image(beautiful.arrl_dl)
-arrl_ld = wibox.widget.imagebox()
-arrl_ld:set_image(beautiful.arrl_ld)
-
+arrl_dl = separators.arrow_left(beautiful.bg_focus, "alpha")
+arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -307,6 +305,7 @@ for s = 1, screen.count() do
 
   right_layout = wibox.layout.fixed.horizontal()
   right_layout:add(arrl)
+  right_layout:add(spr)
   right_layout_add(volicon, volumewidget)
   right_layout_add(cpuicon, cpuwidget)
   right_layout_add(memicon, memwidget)
@@ -314,9 +313,7 @@ for s = 1, screen.count() do
   right_layout_add(tempicon, tempwidget)
   right_layout_add(neticon, netwidget)
   right_layout_add(baticon, batwidget)
-  if s == 1 then
-    right_layout_add(mysystray)
-  end
+  if s == 1 then right_layout_add(mysystray) end
   right_layout_add(mytextclock, spr)
   right_layout_add(mylayoutbox[s])
 
@@ -354,6 +351,7 @@ globalkeys = awful.util.table.join(
       awful.client.focus.byidx(-1)
       if client.focus then client.focus:raise() end
   end),
+  
   awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
   -- Layout manipulation
@@ -631,18 +629,18 @@ function run_once(cmd)
 end
 
 --the applets with the function
-awful.util.spawn_with_shell("eval $(xrdb ~/.Xresources) &")
--- run_once("tmux")
-run_once("xfsettingsd &")
+awful.util.spawn_with_shell("eval $(xrdb ~/.Xresources)")
+run_once("xfsettingsd")
 -- run_once("nm-applet")
-run_once('xfce4-power-manager &')
-run_once('xfce4-volumed &')
+run_once('xfce4-power-manager')
+run_once('xfce4-volumed')
 -- run_once("blueman-applet")
-run_once('pasystray &')
-run_once('skype &')
-run_once("pidgin &")
--- awful.util.spawn_with_shell("pgrep -u $USER -f scudcloud > /dev/null || (scudcloud)")
-run_once('dropbox start &')
-run_once('light-locker &')
+run_once('pasystray')
+run_once('skype')
+run_once("pidgin")
+run_once('slack')
+run_once('dropbox start')
+run_once('light-locker')
+run_once("unclutter -root")
 
 awful.util.spawn_with_shell('killall xfce4-notifyd &')
