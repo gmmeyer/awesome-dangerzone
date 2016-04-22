@@ -15,8 +15,6 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local lain = require("lain")
 
--- awesome.font = "Ubuntu Mono 16"
-
 -- Quake Console
 local scratch = require("scratch")
 
@@ -52,6 +50,8 @@ end
 -- Themes define colours, icons, and wallpapers
 -- beautiful.init("~/.config/awesome/themes/default/theme.lua")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/theme.lua")
+awesome.font = "sauce sand pro 9"
+theme.font = "sauce sand pro 9"
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "terminator"
@@ -351,7 +351,7 @@ globalkeys = awful.util.table.join(
       awful.client.focus.byidx(-1)
       if client.focus then client.focus:raise() end
   end),
-  
+
   awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
   -- Layout manipulation
