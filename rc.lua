@@ -50,8 +50,8 @@ end
 -- Themes define colours, icons, and wallpapers
 -- beautiful.init("~/.config/awesome/themes/default/theme.lua")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/theme.lua")
-awesome.font = "sauce sand pro 9"
-theme.font = "sauce sand pro 9"
+awesome.font = "sauce sans pro 14"
+theme.font = "sauce sans pro 14"
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "terminator"
@@ -117,7 +117,7 @@ clockicon = wibox.widget.imagebox(beautiful.widget_clock)
 mytextclock = awful.widget.textclock("%a %b %d, %I:%M")
 
 -- calendar
-lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
+lain.widgets.calendar:attach(mytextclock, { font_size = 12 })
 
 -- MEM
 memicon = wibox.widget.imagebox(beautiful.widget_mem)
@@ -174,8 +174,13 @@ batwidget = lain.widgets.bat({
 volicon = wibox.widget.imagebox(beautiful.widget_vol)
 volumewidget = lain.widgets.alsa({
     settings = function()
-      if volume_now.status == "off" then
+      if  volume_now.status == nil then
         volicon:set_image(beautiful.widget_vol_mute)
+        widget:set_text(" " .. 0 .. "% ")
+        return
+      elseif volume_now.status == "off" or volume_now.status == nil then
+        volicon:set_image(beautiful.widget_vol_mute)
+
       elseif tonumber(volume_now.level) == 0 then
         volicon:set_image(beautiful.widget_vol_no)
       elseif tonumber(volume_now.level) <= 50 then
@@ -400,6 +405,7 @@ globalkeys = awful.util.table.join(
   -- Scratchpad
   -- This launches the scratchpad
   awful.key({modkey }, "`", function() scratch("urxvt -name urxvt_drop", "top", "center", 0.95, 0.40) end)
+  -- awful.key({modkey }, "`", function() scratch("urxvt -name urxvt_drop -e bash -c 'tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME'", "top", "center", 0.95, 0.40) end)
 )
 
 clientkeys = awful.util.table.join(
@@ -639,7 +645,7 @@ run_once('pasystray')
 run_once('skype')
 run_once("pidgin")
 run_once('slack')
-run_once('dropbox start')
+--run_once('dropbox start')
 run_once('light-locker')
 run_once("unclutter -root")
 
