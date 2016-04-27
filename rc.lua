@@ -12,8 +12,8 @@ local obvious = require("obvious")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
 local lain = require("lain")
+local menubar = require("menubar")
 
 -- Quake Console
 local scratch = require("scratch")
@@ -49,9 +49,24 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 -- beautiful.init("~/.config/awesome/themes/default/theme.lua")
+
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/theme.lua")
-awesome.font = "sauce sans pro 14"
-theme.font = "sauce sans pro 14"
+
+awesome.font = "Terminus 14"
+theme.font = "Terminus 14"
+menubar.font = "Terminus 14"
+
+theme.awful_widget_height           = 24
+theme.awful_widget_margin_top       = 2
+
+-- theme.menu_height                   = "26"
+-- theme.menu_width                    = "140"
+
+theme.menu_height                   = "26"
+theme.menu_width                    = "140"
+
+print(beautiful.get_font_height())
+
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "terminator"
@@ -94,10 +109,8 @@ for s = 1, screen.count() do
   tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
 end
 -- }}}
-
 mymainmenu = awful.menu.new({ items = require("menugen").build_menu(),
-                              theme = { height = 16, width = 130 },
-                           })
+                              theme = { height = 36, width = 130 }})
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -115,6 +128,7 @@ separators = lain.util.separators
 -- Textclock
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
 mytextclock = awful.widget.textclock("%a %b %d, %I:%M")
+mytextclock:set_font("Terminus 14")
 
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 12 })
@@ -124,6 +138,7 @@ memicon = wibox.widget.imagebox(beautiful.widget_mem)
 memwidget = lain.widgets.mem({
     settings = function()
       widget:set_text(" " .. mem_now.used .. "MB ")
+      widget:set_font("Terminus 14")
     end
 })
 
@@ -132,6 +147,7 @@ cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
 cpuwidget = lain.widgets.cpu({
     settings = function()
       widget:set_text(" " .. cpu_now.usage .. "% ")
+      widget:set_font("Terminus 14")
     end
 })
 
@@ -140,6 +156,7 @@ tempicon = wibox.widget.imagebox(beautiful.widget_temp)
 tempwidget = lain.widgets.temp({
     settings = function()
       widget:set_text(" " .. coretemp_now .. "°C ")
+      widget:set_font("Terminus 14")
     end
 })
 
@@ -148,6 +165,7 @@ fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
 fswidget = lain.widgets.fs({
     settings  = function()
       widget:set_text(" " .. fs_now.used .. "% ")
+      widget:set_font("Terminus 14")
     end
 })
 
@@ -155,6 +173,7 @@ fswidget = lain.widgets.fs({
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
 batwidget = lain.widgets.bat({
     settings = function()
+      widget:set_font("Terminus 14")
       if bat_now.perc == "N/A" then
         widget:set_markup(" AC ")
         baticon:set_image(beautiful.widget_ac)
@@ -174,6 +193,7 @@ batwidget = lain.widgets.bat({
 volicon = wibox.widget.imagebox(beautiful.widget_vol)
 volumewidget = lain.widgets.alsa({
     settings = function()
+      widget:set_font("Terminus 14")
       if  volume_now.status == nil then
         volicon:set_image(beautiful.widget_vol_mute)
         widget:set_text(" " .. 0 .. "% ")
@@ -198,6 +218,7 @@ neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 netwidget = lain.widgets.net({
     settings = function()
+      widget:set_font("Terminus 14")
       widget:set_markup(markup("#7AC82E", " " .. net_now.received)
                           .. " " ..
                           markup("#46A8C3", " " .. net_now.sent .. " "))
@@ -281,7 +302,7 @@ for s = 1, screen.count() do
   mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
   -- Create the wibox
-  mywibox[s] = awful.wibox({ position = "top", screen = s })
+  mywibox[s] = awful.wibox({ position = "top", screen = s, height = 34 })
 
   -- Widgets that are aligned to the left
   local left_layout = wibox.layout.fixed.horizontal()
