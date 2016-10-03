@@ -21,11 +21,11 @@ local quake = require("quake")
 -- Load Debian menu entries
 require("debian.menu")
 
+-- load error handling
 require('config.errors')
 
+-- load config
 local config = require('config')
-
--- }}}
 
 -- {{{ Wibox
 markup = lain.util.markup
