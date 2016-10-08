@@ -28,6 +28,7 @@
 
 local setmetatable = setmetatable
 local string = string
+local pairs = pairs
 local awful  = require("awful")
 local capi   = { mouse = mouse,
 		 screen = screen,
@@ -101,8 +102,14 @@ function QuakeConsole:display()
 		 client.hidden = false
 		 client:raise()
 		 capi.client.focus = client
+		 awful.client.movetotag(awful.tag.selected(self.screen), client)
 	else
 		 client.hidden = true
+		 local ctags = client:tags()
+		 for i, t in pairs(ctags) do
+				 ctags[i] = nil
+		 end
+		 client:tags(ctags)
 	end
 
 end
@@ -135,8 +142,7 @@ function QuakeConsole:format(client)
 	client.ontop = true
 	client.above = true
 	client.skip_taskbar = true
-	client.sticky = true
-
+	client.sticky = self.sticky
 	-- This is not a normal window, don't apply any specific keyboard stuff
 	client:buttons({})
 	client:keys({})
@@ -161,6 +167,7 @@ function QuakeConsole:new(config)
 
    config.screen   = config.screen or capi.mouse.screen
    config.visible  = config.visible or false -- Initially, not visible
+	 config.sticky   = config.sticky or false
 
    local console = setmetatable(config, { __index = QuakeConsole })
 	 local quake = self

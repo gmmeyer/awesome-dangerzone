@@ -100,7 +100,7 @@ volicon = wibox.widget.imagebox(beautiful.widget_vol)
 volumewidget = lain.widgets.pulseaudio({
     settings = function()
       widget:set_font("Terminus 14")
-      if volume_now.muted == "yes" or volume_now.status == "off" then
+      if volume_now.muted == "yes" or volume_now.status == "off" or volume_now.left == nil then
         volicon:set_image(beautiful.widget_vol_mute)
         widget:set_text(" " .. 0 .. "% ")
       elseif tonumber(volume_now.left) == 0 then
@@ -271,6 +271,7 @@ for s = 1, screen.count() do
            vert = 'top',
            horoz = 'center',
            name = "quake_console_" .. s,
+          --  sticky = true,
 			     screen = s })
 end
 
