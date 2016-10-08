@@ -101,8 +101,8 @@ function QuakeConsole:display()
 	if self.visible then
 		 client.hidden = false
 		 client:raise()
-		 capi.client.focus = client
 		 awful.client.movetotag(awful.tag.selected(self.screen), client)
+		 capi.client.focus = client
 	else
 		 client.hidden = true
 		 local ctags = client:tags()
