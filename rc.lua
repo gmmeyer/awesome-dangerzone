@@ -103,15 +103,16 @@ volumewidget = lain.widgets.pulseaudio({
       if volume_now.muted == "yes" or volume_now.status == "off" or volume_now.left == nil then
         volicon:set_image(beautiful.widget_vol_mute)
         widget:set_text(" " .. 0 .. "% ")
-      elseif tonumber(volume_now.left) == 0 then
-        volicon:set_image(beautiful.widget_vol_no)
-      elseif tonumber(volume_now.left) <= 50 then
-        volicon:set_image(beautiful.widget_vol_low)
       else
-        volicon:set_image(beautiful.widget_vol)
+        if tonumber(volume_now.left) == 0 then
+          volicon:set_image(beautiful.widget_vol_no)
+        elseif tonumber(volume_now.left) <= 50 then
+          volicon:set_image(beautiful.widget_vol_low)
+        else
+          volicon:set_image(beautiful.widget_vol)
+        end
+        widget:set_text(" " .. volume_now.left .. "% ")
       end
-
-      widget:set_text(" " .. volume_now.left .. "% ")
     end
 })
 
