@@ -28,6 +28,7 @@ function apps(config)
   --run_once('dropbox start')
   run_once('light-locker')
   run_once("unclutter -root")
+  run_once('compton')
 
 
   awful.util.spawn_with_shell('killall xfce4-notifyd &')
