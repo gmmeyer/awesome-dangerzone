@@ -4,9 +4,6 @@
 [submodule "radical"]
 	path = radical
 	url = git@github.com:Elv13/radical.git
-[submodule "awesome-copycats"]
-	path = awesome-copycats
-	url = git@github.com:copycat-killer/awesome-copycats.git
 [submodule "lain"]
 	path = lain
 	url = git@github.com:copycat-killer/lain.git
